@@ -4,19 +4,23 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 //export default를 한게 아니라 변수를 export 하면
-// import {userRouter}로 묶어서 import 해준다.
+// {}로 묶어서 import 해준다.
+import { localsMiddleware } from "./middlewares";
+import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
-import routes from "./routes";
 const app = express();
 
+app.use(helmet());
 app.set("view engine", "pug");
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
 app.use(morgan("dev"));
+
+//localMiddleware
+app.use(localsMiddleware);
 
 //use -> 누군가 /user 에 접속하면 router전체를 사용하겠다.
 app.use(routes.home, globalRouter);
