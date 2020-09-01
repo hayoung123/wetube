@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-//localMiddleware
+//localMiddleware를거치고 router로 넘어가야 되기 때문에 여기에 위치.
 app.use(localsMiddleware);
 
 //use -> 누군가 /user 에 접속하면 router전체를 사용하겠다.

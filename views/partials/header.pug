@@ -3,6 +3,10 @@ header.header
         a(href=routes.home)
             i.fab.fa-youtube
     .header__column
+        //- 컨트롤러가 query에 접근하기위해 method get을 사용해야한다
+        form(action=routes.search, method="get")
+            input(type="text", placeholder="Search by term...", name="term")
+    .header__column
         ul
             li
                 a(href=routes.join) Join

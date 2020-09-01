@@ -1,7 +1,14 @@
 //res.render(view[,locals variables for view -->{}로 표시][,callback--funcion])
 export const home = (req, res) => res.render("home", { pageTitle: "Home" });
-export const search = (req, res) =>
-  res.render("search", { pageTitle: "Search" });
+
+export const search = (req, res) => {
+  //const searchingBy = req.query.term
+  //아래와 같이 표현 가능
+  const {
+    query: { term: searchingBy },
+  } = req;
+  res.render("search", { pageTitle: "Search", searchingBy });
+};
 
 export const videos = (req, res) =>
   res.render("videos", { pageTitle: "Videos" });
