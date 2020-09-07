@@ -1,4 +1,3 @@
-import { videoList } from "../db";
 import routes from "../routes";
 
 //res.render(view[,locals variables for view -->{}로 표시][,callback--funcion])

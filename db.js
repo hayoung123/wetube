@@ -1,54 +1,18 @@
-export const videoList = [
-  {
-    id: 111111,
-    title: "video awesome",
-    description: "This is something I love",
-    views: 24,
-    videoFile:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    creator: {
-      id: 121212,
-      names: "hayoung",
-      email: "ha@young.com",
-    },
-  },
-  {
-    id: 222222,
-    title: "video super",
-    description: "This is something I love",
-    views: 11,
-    videoFile:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    creator: {
-      id: 121212,
-      names: "hayoung",
-      email: "ha@young.com",
-    },
-  },
-  {
-    id: 333333,
-    title: "video super1",
-    description: "This is something I love",
-    views: 11,
-    videoFile:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    creator: {
-      id: 121212,
-      names: "hayoung",
-      email: "ha@young.com",
-    },
-  },
-  {
-    id: 444444,
-    title: "video super2",
-    description: "This is something I love",
-    views: 11,
-    videoFile:
-      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    creator: {
-      id: 121212,
-      names: "hayoung",
-      email: "ha@young.com",
-    },
-  },
-];
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+//.env 파일을 load 하고 찾은 variable 을 process.env.key로 불러 올 수 있다.
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("✅connected to DB");
+const handleError = () => console.log(`❌Error on DB Connection: ${error}`);
+
+db.once("open", handleOpen);
+db.on("error", handleError);
