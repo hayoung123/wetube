@@ -1,8 +1,16 @@
 import routes from "../routes";
+import Video from "../models/Video";
 
 //res.render(view[,locals variables for view -->{}로 표시][,callback--funcion])
-export const home = (req, res) =>
-  res.render("home", { pageTitle: "Home", videoList });
+export const home = async (req, res) => {
+  try {
+    const videos = await Video.find({});
+    res.render("home", { pageTitle: "Home", videos });
+  } catch (error) {
+    console.log(error);
+    res.render("home", { pageTitle: "Home", videos: [] });
+  }
+};
 
 //search
 export const search = (req, res) => {
@@ -13,9 +21,6 @@ export const search = (req, res) => {
   } = req;
   res.render("search", { pageTitle: "Search", searchingBy, videoList });
 };
-
-export const videos = (req, res) =>
-  res.render("videos", { pageTitle: "Videos" });
 
 //upload
 export const getUpload = (req, res) =>
