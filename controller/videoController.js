@@ -4,7 +4,7 @@ import Video from "../models/Video";
 //res.render(view[,locals variables for view -->{}로 표시][,callback--funcion])
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({});
+    const videos = await Video.find({}).sort({ _id: -1 });
     console.log(videos);
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
