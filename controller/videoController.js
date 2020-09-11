@@ -14,13 +14,20 @@ export const home = async (req, res) => {
 };
 
 //search
-export const search = (req, res) => {
+export const search = async (req, res) => {
   //const searchingBy = req.query.term
-  //아래와 같이 표현 가능
   const {
     query: { term: searchingBy },
   } = req;
-  res.render("search", { pageTitle: "Search", searchingBy, videoList });
+  let videos = [];
+  try {
+    videos = await Video.find({
+      title: { $regex: searchingBy, $options: "i" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  res.render("search", { pageTitle: "Search", searchingBy, videos });
 };
 
 //upload
