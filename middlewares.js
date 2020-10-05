@@ -10,7 +10,22 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.user = req.user || null;
   next();
 };
-//이 미들웨어는 코드 사이에 있기 때문에 next를 호출 해야한다.
-//다음 함수로 넘어간다는 뜻
+
+//login 상태에서 join등으로의 router 통제
+export const onlyPublic = (req, res, next) => {
+  if (req.user) {
+    res.redirect(routes.home);
+  } else {
+    next();
+  }
+};
+
+export const onlyPrivate = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect(routes.home);
+  }
+};
 
 export const uploadVideo = multerVideo.single("videoFile");
