@@ -5,11 +5,16 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 //export default를 한게 아니라 변수를 export 하면
 // {}로 묶어서 import 해준다.
+import passport from "passport";
+import session from "express-session";
 import { localsMiddleware } from "./middlewares";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
+
+import "./passport";
+
 const app = express();
 
 app.use(helmet());
@@ -20,6 +25,15 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //localMiddleware를거치고 router로 넘어가야 되기 때문에 여기에 위치.
 app.use(localsMiddleware);

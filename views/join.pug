@@ -3,7 +3,7 @@ extends layouts/main.pug
 block content
     .form-container
         //- login은 보안사항이기 때문에 post
-        form(action=routes.postJoin, method="post" required=true)
+        form(action=routes.join, method="post", required=true)
             input(type="text", name="name", placeholder="Full Name", required=true)
             input(type="email", name="email", placeholder="Email", required=true)
             input(type="password", name="password", placeholder="Password", required=true)

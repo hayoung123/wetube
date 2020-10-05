@@ -7,10 +7,8 @@ const multerVideo = multer({ dest: "uploads/videos/" });
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WeTube";
   res.locals.routes = routes;
-  res.locals.user = {
-    isAuthenticated: true,
-    id: 1,
-  };
+  res.locals.user = req.user || null;
+  console.log(req.user);
   next();
 };
 //이 미들웨어는 코드 사이에 있기 때문에 next를 호출 해야한다.
