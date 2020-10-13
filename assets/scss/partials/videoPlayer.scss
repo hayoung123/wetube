@@ -1,9 +1,9 @@
 .videoPlayer {
   position: relative;
   video {
-    width: 500px;
+    width: 100%;
+    height: 100%;
     max-width: 100%;
-    height: 300px;
   }
   .videoPlayer__controls {
     opacity: 0;
@@ -11,7 +11,7 @@
     width: 100%;
     color: white;
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 0;
     display: grid;
