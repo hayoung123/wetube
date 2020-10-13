@@ -21,12 +21,15 @@
     }
     .videoPlayer__column:last-child {
       justify-self: end;
-      margin-right: 5px;
+      margin-right: 10px;
       display: flex;
       align-items: center;
       span:nth-child(2),
       span:last-child {
         margin-left: 10px;
+      }
+      #totalTime {
+        margin-left: 4px;
       }
     }
     i {
