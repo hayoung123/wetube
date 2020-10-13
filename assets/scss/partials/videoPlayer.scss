@@ -17,6 +17,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     .videoPlayer__column:first-child {
+      align-self: center;
       margin-left: 10px;
     }
     .videoPlayer__column:last-child {
@@ -24,14 +25,51 @@
       margin-right: 10px;
       display: flex;
       align-items: center;
+      span:first-child {
+        span:first-child {
+          margin-right: 4px;
+        }
+        span:last-child {
+          margin-left: 4px;
+        }
+      }
       span:nth-child(2),
       span:last-child {
         margin-left: 10px;
       }
-      #totalTime {
-        margin-left: 4px;
+      .videoPlayer__volume {
+        width: 100%;
+        padding: 0;
       }
+      // .videoPlayer__volume {
+      //   position: absolute;
+      //   padding: 0;
+      //   opacity: 1;
+      //   top: -60px;
+      //   right: 13px;
+      //   transform: rotate(-90deg);
+      //   z-index: 10;
+      //   width: 80px;
+
+      //   input {
+      //     background-color: rgba(0, 0, 0, 0.7);
+      //     &::-webkit-slider-runnable-track {
+      //       background-color: $grey;
+      //       height: 5px;
+      //     }
+      //     &::-webkit-slider-thumb {
+      //       all: unset;
+      //       background-color: $red;
+      //       height: 15px;
+      //       width: 15px;
+      //       border-radius: 50%;
+      //       position: relative;
+      //       top: -5px;
+      //     }
+      //   }
+      // }
     }
+
     i {
       font-size: 20px;
       cursor: pointer;
