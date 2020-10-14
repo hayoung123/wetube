@@ -122,13 +122,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+a {
+  all: unset;
+  cursor: pointer;
+  text-decoration: none;
+  color: $black;
+}
+
 *,
 input {
   box-sizing: border-box;
 }
 
-input,
-button {
+input {
   border: none;
   box-sizing: border-box;
   &:focus,
