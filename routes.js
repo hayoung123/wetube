@@ -21,7 +21,7 @@ const DELETE_VIDEO = "/:id/delete";
 
 //api
 const API = "/api";
-const REGISTER_VIEW = ":id/view";
+const REGISTER_VIEW = "/:id/view";
 
 //Github
 

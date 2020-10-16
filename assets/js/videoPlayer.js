@@ -61,7 +61,7 @@ function formatDate(seconds) {
 }
 
 function getCurrentTime() {
-  const currentTimeString = formatDate(Math.floor(videoPlayer.currentTime));
+  const currentTimeString = formatDate(Math.ceil(videoPlayer.currentTime));
   currentTime.innerText = currentTimeString;
 }
 
@@ -73,6 +73,7 @@ function setTotalTime() {
 
 function handleEnd() {
   registerView();
+  console.log("끝");
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
