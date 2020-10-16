@@ -19,6 +19,10 @@ const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 
+//api
+const API = "/api";
+const REGISTER_VIEW = ":id/view";
+
 //Github
 
 const GITHUB = "/auth/github";
@@ -63,6 +67,8 @@ const routes = {
   github: GITHUB,
   githubCallback: GITHUB_CALLBACK,
   getMe: GET_ME,
+  api: API,
+  registerView: REGISTER_VIEW,
 };
 
 export default routes;
