@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video";
+import Comment from "../models/Comment";
 import User from "../models/User";
 
 //res.render(view[,locals variables for view -->{}로 표시][,callback--funcion])
@@ -57,13 +58,16 @@ export const videoDetail = async (req, res) => {
     params: { id },
   } = req;
   try {
-    const video = await Video.findById(id).populate("creator");
+    const video = await Video.findById(id)
+      .populate("creator")
+      .populate("comments");
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     res.redirect(routes.home);
   }
 };
 
+//edit video
 export const getEditVideo = async (req, res) => {
   const {
     params: { id },
@@ -93,6 +97,7 @@ export const postEditVideo = async (req, res) => {
   }
 };
 
+//delete video
 export const deleteVideo = async (req, res) => {
   const {
     params: { id },
@@ -120,6 +125,27 @@ export const postRegisterView = async (req, res) => {
     res.status(200);
   } catch (error) {
     res.status(200);
+  } finally {
+    res.end();
+  }
+};
+
+//add comment
+export const postAddComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { comment },
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: user.id,
+    });
+    video.comments.push(newComment._id);
+    video.save();
+  } catch (error) {
+    res.status(400);
   } finally {
     res.end();
   }
