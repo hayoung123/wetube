@@ -63,6 +63,7 @@ export const videoDetail = async (req, res) => {
       .populate("comments");
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
+    console.log(error);
     res.redirect(routes.home);
   }
 };
@@ -140,11 +141,12 @@ export const postAddComment = async (req, res) => {
     const video = await Video.findById(id);
     const newComment = await Comment.create({
       text: comment,
-      creator: user.id,
+      creator: id,
     });
     video.comments.push(newComment._id);
     video.save();
   } catch (error) {
+    console.log(error);
     res.status(400);
   } finally {
     res.end();
