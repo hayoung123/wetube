@@ -33,14 +33,39 @@
       font-size: 16px;
     }
   }
-  .video__comments {
-    margin-top: 25px;
-    .video__comment-number {
-      font-size: 18px;
-    }
-  }
   .video__thumbnail {
     width: 500px;
     height: 300px;
+  }
+  .video__comments {
+    width: 100%;
+    margin: 25px 0;
+    .video__comment-number {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .add__comment > input {
+      max-width: 70%;
+      margin-top: 10px;
+      cursor: text;
+      border-bottom: 1px solid;
+      border-radius: 0;
+      background-color: $grey;
+      padding-bottom: 4px;
+    }
+    .video__comments-list {
+      li:first-child {
+        margin-top: 20px;
+      }
+      li {
+        width: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        background-color: hsl(212, 53%, 82%);
+        border-bottom-left-radius: 0;
+        padding: 5px;
+        margin: 10px 5px;
+      }
+    }
   }
 }
