@@ -61,6 +61,7 @@ export const videoDetail = async (req, res) => {
     const video = await Video.findById(id)
       .populate("creator")
       .populate("comments");
+    console.log(video);
     res.render("videoDetail", { pageTitle: video.title, video });
   } catch (error) {
     console.log(error);
@@ -75,12 +76,13 @@ export const getEditVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user._id) {
+    if (String(video.creator) !== req.user._id) {
       throw Error();
     } else {
       res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
     }
-  } catch {
+  } catch (error) {
+    console.log(error);
     res.redirect(routes.home);
   }
 };
@@ -105,7 +107,7 @@ export const deleteVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    if (video.creator !== req.user._id) {
+    if (String(video.creator) !== req.user._id) {
       throw Error();
     } else {
       await Video.findOneAndRemove({ _id: id });
@@ -143,8 +145,9 @@ export const postAddComment = async (req, res) => {
       text: comment,
       creator: req.user._id,
     });
-    video.comments.push(newComment._id);
+    video.comments.push(newComment.id);
     video.save();
+    res.send({ commentId: newComment.id });
   } catch (error) {
     console.log(error);
     res.status(400);
@@ -157,12 +160,19 @@ export const postAddComment = async (req, res) => {
 export const postDeleteComment = async (req, res) => {
   const {
     params: { id },
-    body: { comment },
+    body: { commentId },
   } = req;
-
   try {
+    // const comment = await Comment.findById({ _id: commentId });
+    await Comment.findByIdAndRemove({ _id: commentId });
     const video = await Video.findById(id);
+    const commentIdx = video.comments.indexOf(commentId);
+    video.comments.splice(commentIdx, 1);
+    video.save();
+    console.log(video);
   } catch (error) {
     console.log(error);
+  } finally {
+    res.end();
   }
 };
