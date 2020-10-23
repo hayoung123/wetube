@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 //export default를 한게 아니라 변수를 export 하면
 // {}로 묶어서 import 해준다.
 import passport from "passport";
+import path from "path";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
@@ -24,8 +25,9 @@ const CookieStore = MongoStore(session);
 
 app.use(helmet());
 app.set("view engine", "pug");
-app.use("/uploads", express.static("uploads"));
-app.use("/static", express.static("static"));
+app.set("views", path.join(__dirname, "views"));
+// app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static(path.join(__dirname, "static")));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
