@@ -36,4 +36,6 @@ block content
                     li(id=String(comment._id))
                         span=comment.text
                         if loggedUser&&loggedUser._id===String(comment.creator)
-                            span#jsDeleteCommentBtn ❌ 
+                            div#jsDeleteCommentBtn
+                                i.fas.fa-times 
+                                

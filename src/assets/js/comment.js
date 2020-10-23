@@ -13,9 +13,12 @@ const increaseNumber = () => {
 const addComment = (comment) => {
   const li = document.createElement("li");
   const span = document.createElement("span");
-  const btn = document.createElement("span");
+  const btn = document.createElement("div");
+  const icon = document.createElement("i");
   span.innerHTML = comment;
-  btn.innerHTML = "❌";
+  icon.classList.add("fas");
+  icon.classList.add("fa-times");
+  btn.appendChild(icon);
   li.appendChild(span);
   li.appendChild(btn);
   commentList.prepend(li);
@@ -60,7 +63,7 @@ const deleteComment = async (element) => {
 };
 
 const handleDelete = (event) => {
-  deleteComment(event.path[1]);
+  deleteComment(event.path[2]);
 };
 
 function init() {
