@@ -8,6 +8,7 @@ const fullScreenBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
+const videoSlider = document.getElementById("video__slider");
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
@@ -65,12 +66,17 @@ function formatDate(seconds) {
 function getCurrentTime() {
   const currentTimeString = formatDate(Math.ceil(videoPlayer.currentTime));
   currentTime.innerText = currentTimeString;
+  videoSlider.value = videoPlayer.currentTime;
+  if (videoPlayer.currentTime === 0) {
+    videoSlider.value = 0;
+  }
 }
 
 const setTotalTime = async () => {
   const blob = await fetch(videoPlayer.src).then((response) => response.blob());
   console.log(blob);
   const duration = await getBlobDuration(blob);
+  videoSlider.max = duration;
   const totalTimeString = formatDate(duration);
   totalTime.innerText = totalTimeString;
   setInterval(getCurrentTime, 1000);
@@ -91,8 +97,10 @@ function handleDrag(event) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
   } else if (value >= 0.2) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
-  } else {
+  } else if (value > 0) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
+  } else {
+    volumeBtn.innerHTML = '<i class = "fas fa-volume-mute"></i>';
   }
 }
 
@@ -101,6 +109,13 @@ const registerView = () => {
   fetch(`/api/${videoId}/view`, {
     method: "POST",
   });
+};
+
+const handleSlide = (event) => {
+  const {
+    target: { value },
+  } = event;
+  videoPlayer.currentTime = value;
 };
 
 function init() {
@@ -112,6 +127,7 @@ function init() {
   //   videoPlayer.addEventListener("timeupdate", getCurrentTime);
   videoPlayer.addEventListener("ended", handleEnd);
   volumeRange.addEventListener("input", handleDrag);
+  videoSlider.addEventListener("input", handleSlide);
 }
 
 if (videoContainer) {
