@@ -23,7 +23,7 @@ const app = express();
 
 const CookieStore = MongoStore(session);
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 // app.use("/uploads", express.static("uploads"));

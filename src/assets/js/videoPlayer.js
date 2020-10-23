@@ -73,7 +73,6 @@ function setTotalTime() {
 
 function handleEnd() {
   registerView();
-  console.log("끝");
   videoPlayer.currentTime = 0;
   playBtn.innerHTML = '<i class="fas fa-play"></i>';
 }
@@ -82,7 +81,6 @@ function handleDrag(event) {
   const {
     target: { value },
   } = event;
-  console.log(value);
   videoPlayer.volume = value;
   if (value >= 0.6) {
     volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
