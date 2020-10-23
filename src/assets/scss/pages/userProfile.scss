@@ -20,5 +20,8 @@
     a:not(:last-child) {
       margin-bottom: 20px;
     }
+    a:last-child {
+      margin-bottom: 50px;
+    }
   }
 }

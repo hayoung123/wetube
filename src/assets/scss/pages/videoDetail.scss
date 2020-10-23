@@ -65,6 +65,24 @@
         border-bottom-left-radius: 0;
         padding: 5px;
         margin: 10px 5px;
+        display: flex;
+        justify-content: space-between;
+        span {
+          margin-left: 10px;
+        }
+        div {
+          margin-right: 5px;
+          border: 1px solid hsl(213, 59%, 65%);
+          border-radius: 7px;
+          padding: 2px;
+          &:hover {
+            border: 1px solid #ea232c;
+          }
+          i {
+            color: $red;
+            cursor: pointer;
+          }
+        }
       }
     }
   }

@@ -6,7 +6,7 @@
     max-width: 100%;
   }
   .videoPlayer__controls {
-    opacity: 0;
+    // opacity: 0;
     transition: opacity 0.4s linear;
     width: 100%;
     color: white;
@@ -15,10 +15,19 @@
     background-color: rgba(0, 0, 0, 0.5);
     padding: 5px 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 2fr 1fr;
     .videoPlayer__column:first-child {
-      align-self: center;
       margin-left: 10px;
+      display: flex;
+      align-items: center;
+      span {
+        margin-right: 20px;
+      }
+      input {
+        width: 80%;
+        max-width: 80%;
+        margin-right: 10px;
+      }
     }
     .videoPlayer__column:last-child {
       justify-self: end;
