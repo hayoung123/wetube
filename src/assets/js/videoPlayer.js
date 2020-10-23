@@ -124,14 +124,19 @@ function init() {
   volumeBtn.addEventListener("click", handleVolumeClick);
   fullScreenBtn.addEventListener("click", goFullScreen);
   // videoPlayer.addEventListener("loadedmetadata", setTotalTime);
-  videoPlayer.addEventListener("readyState", setTotalTime);
+  // videoPlayer.addEventListener("readystate", setTotalTime);
   //   videoPlayer.addEventListener("timeupdate", getCurrentTime);
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+      setTotalTime();
+    }
+  };
   videoPlayer.addEventListener("ended", handleEnd);
   volumeRange.addEventListener("input", handleDrag);
   videoSlider.addEventListener("input", handleSlide);
 }
 
 if (videoContainer) {
-  console.log("video ready!");
+  console.log(document.readyState);
   init();
 }
