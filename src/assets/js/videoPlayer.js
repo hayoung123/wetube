@@ -131,5 +131,6 @@ function init() {
 }
 
 if (videoContainer) {
+  console.log("video ready!");
   init();
 }
