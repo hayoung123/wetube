@@ -130,7 +130,7 @@ function init() {
   videoSlider.addEventListener("input", handleSlide);
 }
 
-if (videoContainer) {
-  console.log("video ready!");
-  init();
-}
+// if (videoContainer) {
+// }
+console.log("video ready!");
+init();
