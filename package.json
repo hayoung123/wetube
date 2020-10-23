@@ -6,6 +6,7 @@
   "author": "Hayoung Song",
   "license": "ISC",
   "dependencies": {
+    "@babel/preset-env": "^7.11.0",
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
@@ -51,7 +52,7 @@
     "prestart": "npm run build"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-env": "^7.11.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
