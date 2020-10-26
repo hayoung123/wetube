@@ -11,7 +11,9 @@ passport.use(
     {
       clientID: process.env.GH_ID,
       clientSecret: process.env.GH_SECRET,
-      callbackURL: `http://localhost:4000${routes.githubCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://intense-badlands-66933.herokuapp.com${routes.githubCallback}`
+        : `http://localhost:${process.env.PORT}${routes.githubCallback}`,
     },
     githubLoginCallback
   )
