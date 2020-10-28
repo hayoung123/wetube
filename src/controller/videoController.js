@@ -48,7 +48,6 @@ export const postUpload = async (req, res) => {
       creator: req.user._id,
     });
     const user = await User.findById(req.user._id);
-    user.videos.push(newVideo._id);
     user.save();
     res.redirect(routes.videoDetail(newVideo.id));
   } catch (error) {
