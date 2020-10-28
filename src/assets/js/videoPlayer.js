@@ -46,7 +46,7 @@ function goFullScreen() {
   fullScreenBtn.addEventListener("click", outFullScreen);
 }
 
-function formatDate(seconds) {
+export const formatDate = (seconds) => {
   const secondsNumber = parseInt(seconds, 10);
   let hours = Math.floor(secondsNumber / 3600);
   let minutes = Math.floor((secondsNumber - hours * 3600) / 60);
@@ -61,7 +61,7 @@ function formatDate(seconds) {
     totalSeconds = `0${totalSeconds}`;
   }
   return `${hours}:${minutes}:${totalSeconds}`;
-}
+};
 
 function getCurrentTime() {
   const currentTimeString = formatDate(Math.ceil(videoPlayer.currentTime));
