@@ -51,5 +51,36 @@
         }
       }
     }
+    .header__column:nth-child(2) {
+      form {
+        display: flex;
+        input {
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+        }
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50px;
+          background-color: $white;
+          border: 1px solid gray;
+          border-left: none;
+          background-color: #f0f0f0;
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+          i {
+            font-size: 20px;
+            color: black;
+            opacity: 0.5;
+          }
+        }
+        button:hover {
+          i {
+            opacity: 1;
+          }
+        }
+      }
+    }
   }
 }
